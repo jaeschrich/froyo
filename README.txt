@@ -4,7 +4,7 @@ Usage:
 
 So, to use froyo.js, you need to
 
-1. require the module var froyo = require("./path/to/froyo")
+1. require the module: var froyo = require("./path/to/froyo")
 
 2. Define your request handlers as functions. The functions must have only 2 arguments request and response:
 
@@ -21,7 +21,7 @@ var map = {
 '/whatever': whateverFunction
 }
 
-4. Pass the map variable to the function froyo.scoop()
+4. Pass the map variable to the function froyo.scoop():
 
 froyo.scoop(map, optionalPortVariable)
 
