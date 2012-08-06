@@ -1,0 +1,6 @@
+{
+  "name": "froyo",
+  "version": "0.1.0",
+  "author": "PyScripter255 <https://github.com/PyScripter255>",
+  "description": "A simple, micro-framework for Node.js"
+}
