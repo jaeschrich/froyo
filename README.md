@@ -3,7 +3,7 @@ Frozen Yogurt(froyo.js) is a micro-framework for node.js that I created in a few
 ##Install
 
 With npm:
-```cmd
+```
 npm install git://github.com/PyScripter255/frozen-yogurt.git
 ```
 ##Usage:
