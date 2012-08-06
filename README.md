@@ -1,6 +1,6 @@
 Frozen Yogurt(froyo.js) is a micro-framework for node.js that I created in a few hours. It's small enough that people probably could memorize and retype the file. It is public domain, no restrictions. Nodejs is licensed with the MIT license
 
-Usage:
+##Usage:
 
 So, to use froyo.js, you need to
 
