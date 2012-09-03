@@ -29,7 +29,7 @@ res.end()
 ```javascript
 var map = {
 "/": main,
-'/whatever': whateverFunction
+'/whatever': whateverFunction,
 '404': four_o_four // You can set an optional 404 handler to replace the built-in one
 }
 ```
