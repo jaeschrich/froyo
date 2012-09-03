@@ -30,7 +30,7 @@ res.end()
 var map = {
 "/": main,
 '/whatever': whateverFunction
-'404': four_o_four (optional)
+'404': four_o_four // You can set an optional 404 handler to replace the built-in one
 }
 ```
 4. Pass the map variable to the function froyo.scoop():
