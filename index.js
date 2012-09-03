@@ -3,7 +3,7 @@
 ALL OF THE FOLLOWING  IS PUBLIC DOMAIN
 */
 
-var froyo = require('./froyo')
+var froyo = require('froyo')
 
 function main(req, res){ // A requets handler
     res.writeHead(200, {"Content-Type": "text/html"});
