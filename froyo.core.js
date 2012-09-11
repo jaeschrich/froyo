@@ -30,12 +30,3 @@ function scoop(map, port){ // Deines the main function, scoop.
 }
 
 exports.scoop = scoop;//Exports the function for use
-var fs = require("fs");
-
-exports.staticHandler = function(file, encoding){
-    return function(req, res){
-        res.writeHead(200, {"Content-Type": encoding});
-        var fstream = fs.createReadStream(file);
-        fstream.pipe(res);
-    };
-};
