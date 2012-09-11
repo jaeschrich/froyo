@@ -23,7 +23,11 @@ function scoop(map, port){ // Deines the main function, scoop.
             res.writeHead(200, {"Content-Type": 'text/html'}); //Built-in 404
             res.end("404: Not Found");
         }
+<<<<<<< HEAD:froyo.js
         console.log("404 error for "+path) // console.log the 404 error
+=======
+    console.log("404 error for "+path);
+>>>>>>> npm:froyo.core.js
     }
     }).listen(port); //Listens at the port specified
     console.log("Server Started at port "+ port);//More cmd sugar text

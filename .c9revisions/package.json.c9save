@@ -1,0 +1,1 @@
+{"ts":1345570305096,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"{\r\n  \"name\": \"froyo\",\r\n  \"version\": \"0.1.0\",\r\n  \"author\": \"PyScripter255 <https://github.com/PyScripter255>\",\r\n  \"description\": \"A simple, micro-framework for Node.js\",\r\n  \"main\": \"froyo\"\r\n}"]],"start1":0,"start2":0,"length1":0,"length2":190}]],"length":190}
