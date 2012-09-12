@@ -2,10 +2,22 @@ Frozen Yogurt (froyo.js) is a micro-framework for node.js that I created in a fe
 
 ##Install
 
-With npm:
+###With npm:
 ```
-npm install git://github.com/PyScripter255/frozen-yogurt.git
+npm install git://github.com/PyScripter255/frozen-yogurt.git#npm
 ```
+
+###From source:
+Needs Jake
+
+```
+git clone git://github.com/PyScripter255/frozen-yogurt.git
+
+cd frozen-yogurt
+
+jake
+```
+
 ##Usage:
 
 So, to use froyo.js, you need to
@@ -39,3 +51,6 @@ var map = {
 froyo.scoop(map, optionalPortVariable)
 ```
 5. Enjoy!
+
+##API Docs/Developer Guide
+Coming (very) soon
