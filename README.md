@@ -7,7 +7,7 @@ Frozen Yogurt (froyo.js) is a micro-framework for node.js that I created in a fe
 npm install git://github.com/PyScripter255/frozen-yogurt.git#npm
 ```
 
-###From source:
+###Build from source:
 Needs Jake
 
 ```
