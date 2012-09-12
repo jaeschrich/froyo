@@ -23,7 +23,7 @@ function scoop(map, port){ // Deines the main function, scoop.
             res.writeHead(200, {"Content-Type": 'text/html'}); //Built-in 404
             res.end("404: Not Found");
         }
-        console.log("404 error for "+path) // console.log the 404 error
+ // console.log the 404 error
     console.log("404 error for "+path);
     }
     }).listen(port); //Listens at the port specified
