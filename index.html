@@ -1,0 +1,106 @@
+<!DOCTYPE html>  
+<html> 
+<head>   
+<title>frozen-yogurt</title>   
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">   
+<link rel="stylesheet" media="all" href="docco.css" /> </head> 
+<body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               frozen-yogurt             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>A nodejs micro framework</p>
+
+<h2>Install</h2>
+
+<h3>With npm:</h3>
+
+<p>npm install git://github.com/PyScripter255/frozen-yogurt.git#npm</p>
+
+<h3>Build from source:</h3>
+
+<p>Needs Jake</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p><code>
+git clone git://github.com/PyScripter255/frozen-yogurt.git<br>
+cd frozen-yogurt<br>
+jake<br>
+</code></p>
+
+<h2>Usage:</h2>
+
+<p>So, to use froyo.js, you need to</p>
+
+<p>1.require the module:
+<br> 
+<code>
+var froyo = require("froyo")
+</code></p>
+
+<p>2.Define your request handlers as functions. The functions must have only 2 arguments request and response:</p>
+
+<p><code>
+function main(req, res){<br>
+res.writeHead(200, {"Content-Type": "text/html"})<br>
+res.write("Hello World!")<br>
+res.end()<br>
+}
+</code><br>
+3. Define your url mapping as a JSON variable:</p>
+
+<p><code>
+var map = {<br>
+"/": main,<br>
+'/whatever': whateverFunction,<br>
+'404': four<em>o</em>four // You can set an optional 404 handler to replace the built-in one<br>
+}
+</code><br>
+4. Pass the map variable to the function froyo.scoop():
+<code>
+froyo.scoop(map, optionalPortVariable)
+</code><br>
+5. Enjoy!</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="cm">/* </span>
+<span class="cm">Froyo.js, a micro-framework for node.js.</span>
+
+<span class="cm">ALL OF THE FOLLOWING IS PUBLIC DOMAIN</span>
+<span class="cm">*/</span>
+
+<span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h2>froyo.scoop</h2>
+
+<p>Takes a map variable and a port variable</p>
+
+<h3>Map</h3>
+
+<p>You have to route a url to a function request handler, and it's a Javascript Object Literal</p>
+
+<h3>Port</h3>
+
+<p>Port is a number that defaults to 8080</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">function</span> <span class="nx">scoop</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">port</span><span class="p">){</span>
+   <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">port</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span><span class="p">;</span> 
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span><span class="o">+</span><span class="s2">&quot; request recieved for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span> 
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nx">map</span><span class="p">[</span><span class="nx">path</span><span class="p">](</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">map</span><span class="p">[</span><span class="s1">&#39;404&#39;</span><span class="p">](</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s1">&#39;text/html&#39;</span><span class="p">});</span> 
+            <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">&quot;404: Not Found&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;404 error for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Server Started at port &quot;</span><span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">scoop</span> <span class="o">=</span> <span class="nx">scoop</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <h2>froyo.staticHandler</h2>
+
+<p>Takes two arguments, a file path and the MIME type encoding
+It returns a stream based function that serves the file</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">exports</span><span class="p">.</span><span class="nx">staticHandler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">encoding</span><span class="p">){</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span> 
+        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="nx">encoding</span><span class="p">});</span>
+        <span class="kd">var</span> <span class="nx">fstream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+        <span class="nx">fstream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
