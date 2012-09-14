@@ -2,8 +2,14 @@
 
 ALL OF THE FOLLOWING  IS PUBLIC DOMAIN
 */
+function extend(dest, props){
+    for (var prop in props){
+        dest[prop] = props[prop];
+    }
+}
 
-var froyo = require('./froyo.static') && require("./froyo.core");
+var froyo = require("./froyo.core");
+extend(froyo, require('./froyo.static'));
 var qs = require("querystring");
 var url = require("url");
 
