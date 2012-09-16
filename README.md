@@ -53,7 +53,7 @@ froyo.scoop(map, optionalPortVariable)
 5. Enjoy!
 
 ##API Docs
-See [website](http://www.PyScripter255.github.com/frozen-yogurt)
+See [website](http://pyscripter255.github.com/frozen-yogurt/)
 
 ##Developer Guide
 ###Style Guide
@@ -65,6 +65,7 @@ See [website](http://www.PyScripter255.github.com/frozen-yogurt)
 6. The comments that make their way into the auto-generated API docs are on thei own line (or lines) and single line only
 7. Those same auto-generated docs are parsed for (normal) mardown
 8. In the auto-generated comments, use HTML code blocks, with br tags at the ends of lines (for formatting)
+
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
 1. Docco (npm install -g docco) Auto-generates documentation
