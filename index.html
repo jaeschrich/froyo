@@ -1,5 +1,4 @@
-
-<!DOCTYPE html>  <html> <head>   <title>froyo.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               froyo.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>A nodejs micro framework</p>
+<!DOCTYPE html>  <html> <head>   <title>froyo.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               froyo.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>A node.js micro framework. It auto-detects if it is being used in a node.js cluster worker and adjusts for that.</p>
 
 <h2>Install</h2>
 
@@ -24,7 +23,8 @@ jake<br>
 <span class="cm">*/</span>
 
 <span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h2>froyo.scoop</h2>
+<span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cluster</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;cluster&quot;</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h2>froyo.scoop</h2>
 
 <p>Takes a map variable and a port variable</p>
 
@@ -48,10 +48,14 @@ res.end()<br>
 <h3>Port</h3>
 
 <p>Port is a number that defaults to 8080</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">function</span> <span class="nx">scoop</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">port</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">prefix</span> <span class="o">=</span> <span class="s2">&quot;Server: &quot;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">isWorker</span><span class="p">){</span>
+        <span class="nx">prefix</span> <span class="o">=</span> <span class="s2">&quot;Worker &quot;</span><span class="o">+</span><span class="nx">cluster</span><span class="p">.</span><span class="nx">worker</span><span class="p">.</span><span class="nx">workerID</span><span class="o">+</span><span class="s2">&quot;: &quot;</span><span class="p">;</span>
+    <span class="p">}</span>
    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">port</span> <span class="o">===</span> <span class="s2">&quot;undefined&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">8080</span><span class="p">;</span> <span class="p">}</span>
     <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">).</span><span class="nx">pathname</span><span class="p">;</span> 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span><span class="o">+</span><span class="s2">&quot; request recieved for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span> 
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="o">+</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span><span class="o">+</span><span class="s2">&quot; request recieved for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span> 
     <span class="k">try</span> <span class="p">{</span>
         <span class="nx">map</span><span class="p">[</span><span class="nx">path</span><span class="p">](</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
     <span class="p">}</span>
@@ -63,13 +67,13 @@ res.end()<br>
             <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="s1">&#39;text/html&#39;</span><span class="p">});</span> 
             <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">&quot;404: Not Found&quot;</span><span class="p">);</span>
         <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;404 error for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="o">+</span><span class="s2">&quot;got 404 error for &quot;</span><span class="o">+</span><span class="nx">path</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Server Started at port &quot;</span><span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
-<span class="p">}</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">prefix</span><span class="o">+</span><span class="s2">&quot;serving at port &quot;</span><span class="o">+</span> <span class="nx">port</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span>
+ <span class="p">}</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">scoop</span> <span class="o">=</span> <span class="nx">scoop</span><span class="p">;</span>
-
 <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">);</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h2>froyo.staticHandler</h2>
 
 <p>Takes two arguments, a file path and the MIME type encoding
@@ -85,8 +89,13 @@ var map = {<br>
     <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span> 
         <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span> <span class="nx">encoding</span><span class="p">});</span>
         <span class="kd">var</span> <span class="nx">fstream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="nx">fstream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="nx">fstream</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s2">&quot;File error. Our bad!&quot;</span><span class="p">)</span>
+    <span class="nx">fstream</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+  <span class="p">})</span>
         <span class="nx">fstream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
     <span class="p">};</span>
 <span class="p">};</span>
 
-</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html>
+
