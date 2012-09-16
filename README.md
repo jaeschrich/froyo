@@ -52,5 +52,26 @@ froyo.scoop(map, optionalPortVariable)
 ```
 5. Enjoy!
 
-##API Docs/Developer Guide
-Coming (very) soon
+##API Docs
+See [website](http://www.PyScripter255.github.com/frozen-yogurt)
+
+##Developer Guide
+###Style Guide
+1. If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing
+2. Use streams if possible (for both internals and user experience)
+3. The API should be dead simple
+4. The API should be expressive and unopinionated
+5. The comments should be in plain, normal english (not abbriviated) and in a light, near playful tone
+6. The comments that make their way into the auto-generated API docs are on thei own line (or lines) and single line only
+7. Those same auto-generated docs are parsed for (normal) mardown
+8. In the auto-generated comments, use HTML code blocks, with br tags at the ends of lines (for formatting)
+###Dependencies
+####These are only if you want to work with the code, not use it as a module
+1. Docco (npm install -g docco) Auto-generates documentation
+2. Mocha (npm install -g mocha) Does the testing
+3. Jake (npm install -g jake) The build system
+###Work with the code
+1. Build with ```jake```
+2. Test with ```mocha``` (You have to run ```jake``` first!)
+3. Build docs with ```jake docs```
+

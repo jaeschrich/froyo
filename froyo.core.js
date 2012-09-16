@@ -49,14 +49,14 @@ var cluster = require("cluster");
 //###Port
 //Port is a number that defaults to 8080
 function scoop(map, port){
-    var prefix = ""
+    var prefix = "Server: ";
     if (cluster.isWorker){
-        prefix = "Worker "+cluster.worker.workerID;
+        prefix = "Worker "+cluster.worker.workerID+": ";
     }
    if (typeof port === "undefined") { port = 8080; }
     http.createServer(function(req, res) {
     var path = url.parse(req.url).pathname; 
-    console.log(req.method+" request recieved for "+path); 
+    console.log(prefix+req.method+" request recieved for "+path); 
     try {
         map[path](req, res);
     }
@@ -68,9 +68,10 @@ function scoop(map, port){
             res.writeHead(200, {"Content-Type": 'text/html'}); 
             res.end("404: Not Found");
         }
-    console.log("404 error for "+path);
+    console.log(prefix+"got 404 error for "+path);
     }
     }).listen(port);
-    console.log("Server Started at port "+ port);
-}
+    console.log(prefix+"serving at port "+ port);
+    return true
+ }
 exports.scoop = scoop;
