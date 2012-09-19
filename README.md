@@ -18,7 +18,7 @@ cd frozen-yogurt
 jake
 ```
 
-##Usage:
+##Quickstart:
 
 So, to use froyo.js, you need to
 
