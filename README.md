@@ -73,7 +73,9 @@ See [website](http://pyscripter255.github.com/frozen-yogurt/)
 3. Jake (npm install -g jake) The build system
 
 ###Work with the code
-1. Build with ```jake```
-2. Test with ```mocha``` (You have to run ```jake``` first!)
-3. Build docs with ```jake docs```
+
+1. Install dev dependencies ```npm install```
+2. Build with ```jake```
+3. Test with ```mocha``` (You have to run ```jake``` first!)
+4. Build docs with ```jake docs```
 
