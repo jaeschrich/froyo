@@ -13,6 +13,6 @@ console.log("froyo.js written");
 });
 
 desc("Build the documentation")
-task("docs", ['default'], function(){
+task("docs", ['default', 'dev'], function(){
 spawn("docco", ["froyo.js"]);
 });

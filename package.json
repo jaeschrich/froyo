@@ -10,4 +10,9 @@
   { "type" : "git"
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
   }
+  "dependencies": {
+"docco": "v0.4.0",
+"mocha": "v1.4.2",
+"jake": "v0.3.16"
+}
 }
