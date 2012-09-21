@@ -18,14 +18,14 @@ cd frozen-yogurt
 jake
 ```
 
-##Quickstart:
+##API Docs:
 
 ##Froyo.scoop
 Starts an HTTP server. Takes two arguments ```map``` and ```port```.
 ###Map 
 An object literal where you define your url mapping:
 
-```json
+```javascript
 var map = {
 '/': requestHandler,
 '/test': otherRequestHandler
@@ -67,10 +67,11 @@ var map = {
 Returns a (stream-based) static file serving function. Takes 2 (to three) arguments
 
 Example
-```
+```javascript
 var map = {
 '/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeTemplateVars)
 }
+```
 ###file
 The file you want to serve.
 
@@ -80,7 +81,7 @@ The MIME type of the file. If it's ```text/jade``` then it will compile the jade
 ###options
 The options for the jade rendering. Like:
 
-```
+```json
 {
 "thing1": 1,
 "thing2": 2
@@ -94,15 +95,15 @@ If you aren't using jade, then don't pass options at all.
 3. The API should be dead simple
 4. The API should be expressive and unopinionated
 5. The comments should be short but descriptive. Please don't overload comments
+
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
-1. Docco (npm install -g docco) Auto-generates documentation
-2. Mocha (npm install -g mocha) Does the testing
-3. Jake (npm install -g jake) The build system
+1. npm
+2. jake
 
 ###Work with the code
 
-1. Install dev dependencies ```jake```
+1. Install (the rest of the) dev dependencies ```jake```
 2. Build with ```jake build```
 3. Test with ```mocha```
 4. Build docs with ```jake docs```
