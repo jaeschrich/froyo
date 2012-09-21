@@ -18,14 +18,14 @@ cd frozen-yogurt
 jake
 ```
 
-##Quickstart:
+##API Docs:
 
 ##Froyo.scoop
 Starts an HTTP server. Takes two arguments ```map``` and ```port```.
 ###Map 
 An object literal where you define your url mapping:
 
-```json
+```javascript
 var map = {
 '/': requestHandler,
 '/test': otherRequestHandler
