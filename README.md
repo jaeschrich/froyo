@@ -18,7 +18,7 @@ cd frozen-yogurt
 jake
 ```
 
-##Usage:
+##Quickstart:
 
 ##Froyo.scoop
 Starts an HTTP server. Takes two arguments ```map``` and ```port```.
