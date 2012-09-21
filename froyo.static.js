@@ -1,15 +1,5 @@
 var fs = require("fs");
-//##froyo.staticHandler
-//
-//Takes two arguments, a file path and the MIME type encoding
-//It returns a stream based function that serves the file
-//If you set the MIME type to ```text/jade``` then it will compile it with jade
-//###Example
-//<code>
-//var map = {<br>
-//'/': froyo.staticHandler("index.html", "text/html")<br>
-//}<br>
-//</code>
+
 exports.staticHandler = function(file, encoding, config){
     return function(req, res){ 
         var fstream = fs.createReadStream(file);
@@ -26,7 +16,7 @@ exports.staticHandler = function(file, encoding, config){
 	jadeStream.emit("data", jade.compile(chunk)(config))
 	}
 	jadeStream.end = function(){
-
+	res.end()
 	}
 	jadeStream.writable = true;
 	fstream.pipe(jadeStream);
@@ -39,3 +29,4 @@ exports.staticHandler = function(file, encoding, config){
 	}
     };
 };
+
