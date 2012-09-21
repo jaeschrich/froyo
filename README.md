@@ -67,10 +67,11 @@ var map = {
 Returns a (stream-based) static file serving function. Takes 2 (to three) arguments
 
 Example
-```
+```javascript
 var map = {
 '/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeTemplateVars)
 }
+```
 ###file
 The file you want to serve.
 
