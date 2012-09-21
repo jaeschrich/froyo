@@ -4,7 +4,7 @@
 //
 //###With npm:
 //<code>
-// npm install git://github.com/PyScripter255/frozen-yogurt.git#npm
+// npm install froyo
 //</code>
 //
 //###Build from source:

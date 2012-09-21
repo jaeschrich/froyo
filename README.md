@@ -20,52 +20,80 @@ jake
 
 ##Usage:
 
-So, to use froyo.js, you need to
+##Froyo.scoop
+Starts an HTTP server. Takes two arguments ```map``` and ```port```.
+###Map 
+An object literal where you define your url mapping:
 
-1. require the module: 
-
-```javascript
-var froyo = require("froyo")
-```
-2. Define your request handlers as functions. The functions must have only 2 arguments request and response:
-
-```javascript
-function main(req, res){
-res.writeHead(200, {"Content-Type": "text/html"})
-res.write("Hello World!")
-res.end()
-}
-```
-3. Define your url mapping as a JSON variable:
-
-```javascript
+```json
 var map = {
-"/": main,
-'/whatever': whateverFunction,
-'404': four_o_four // You can set an optional 404 handler to replace the built-in one
+'/': requestHandler,
+'/test': otherRequestHandler
 }
 ```
-4. Pass the map variable to the function froyo.scoop():
+
+```requestHandler``` and ```otherRequestHandler``` are function (that take the arguments request and response, like normal nodejs request handler functions).
+
+You can specify an optional 404 request handler (that takes all errors)
+```
+var map = {
+'404': errorRequestHandler
+}
+```
+
+###Port
+The port that the HTTP server listens at.
+
+###Example
 
 ```javascript
-froyo.scoop(map, optionalPortVariable)
+function index(req, res){
+res.writeHead(200, {"Content-Type": "text/plain"})
+res.end("Hello World")
+}
+
+function err(req, res){
+res.writeHead(404, {})
+res.end("404")
+}
+
+var map = {
+'/': index,
+'404': err
+}
 ```
-5. Enjoy!
 
-##API Docs
-See [website](http://pyscripter255.github.com/frozen-yogurt/)
+##Froyo.staticHandler
+Returns a (stream-based) static file serving function. Takes 2 (to three) arguments
 
+Example
+```
+var map = {
+'/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeTemplateVars)
+}
+###file
+The file you want to serve.
+
+###encoding
+The MIME type of the file. If it's ```text/jade``` then it will compile the jade to HTML and serve it. You don't need jade installed unless you plan to use it.
+
+###options
+The options for the jade rendering. Like:
+
+```
+{
+"thing1": 1,
+"thing2": 2
+}
+```
+If you aren't using jade, then don't pass options at all.
 ##Developer Guide
 ###Style Guide
 1. If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing
 2. Use streams if possible (for both internals and user experience)
 3. The API should be dead simple
 4. The API should be expressive and unopinionated
-5. The comments should be in plain, normal english (not abbriviated) and in a light, near playful tone
-6. The comments that make their way into the auto-generated API docs are on thei own line (or lines) and single line only
-7. Those same auto-generated docs are parsed for (normal) mardown
-8. In the auto-generated comments, use HTML code blocks, with br tags at the ends of lines (for formatting)
-
+5. The comments should be short but descriptive. Please don't overload comments
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
 1. Docco (npm install -g docco) Auto-generates documentation
@@ -74,8 +102,8 @@ See [website](http://pyscripter255.github.com/frozen-yogurt/)
 
 ###Work with the code
 
-1. Install dev dependencies ```npm install```
-2. Build with ```jake```
-3. Test with ```mocha``` (You have to run ```jake``` first!)
+1. Install dev dependencies ```jake```
+2. Build with ```jake build```
+3. Test with ```mocha```
 4. Build docs with ```jake docs```
 

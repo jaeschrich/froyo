@@ -1,6 +1,6 @@
 {
   "name": "froyo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
   "description": "A simple, micro-framework for Node.js. Works with the cluster module.",
   "keywords": ["micro-framework", "cluster", "simple"],
@@ -9,10 +9,5 @@
   "repository" :
   { "type" : "git"
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
-  },
-  "dependencies": {
-"docco": "v0.4.0",
-"mocha": "v1.4.2",
-"jake": "v0.3.16"
-}
+  }
 }
