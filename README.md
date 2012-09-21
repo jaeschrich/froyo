@@ -81,7 +81,7 @@ The MIME type of the file. If it's ```text/jade``` then it will compile the jade
 ###options
 The options for the jade rendering. Like:
 
-```
+```json
 {
 "thing1": 1,
 "thing2": 2
