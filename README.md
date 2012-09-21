@@ -95,6 +95,7 @@ If you aren't using jade, then don't pass options at all.
 3. The API should be dead simple
 4. The API should be expressive and unopinionated
 5. The comments should be short but descriptive. Please don't overload comments
+
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
 1. Docco (npm install -g docco) Auto-generates documentation
