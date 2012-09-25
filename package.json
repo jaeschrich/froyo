@@ -3,11 +3,15 @@
   "version": "0.4.0",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
   "description": "A simple, micro-framework for Node.js. Works with the cluster module.",
-  "keywords": ["micro-framework", "cluster", "simple"],
+  "keywords": ["micro-framework", "cluster", "simple", "jade"],
   "main": "froyo",
   "homepage": "http://pyscripter255.github.com/frozen-yogurt/",
   "repository" :
   { "type" : "git"
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
-  }
+  },
+  dependecies: {
+"jade": "x.x",
+"mocha": "x.x"
+},
 }
