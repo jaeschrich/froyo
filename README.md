@@ -21,6 +21,8 @@ jake build
 ```javascript
 var froyo = require("froyo")
 
+var thePosts = {"bob": ["Froyo is cool", "Have you tried it?"], "joe": ["Really?", "Nope"]}
+
 function givePosts(req, res){
 res.writeHead(200, {"Content-Type": "text/json"})
 res.end(JSON.stringify(thePosts))
