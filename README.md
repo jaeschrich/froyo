@@ -89,7 +89,7 @@ Returns a (stream-based) static file serving function. Takes 2 (to three) argume
 Example
 ```javascript
 var map = {
-'/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeTemplateVars)
+'/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeOptions)
 }
 ```
 ###file
