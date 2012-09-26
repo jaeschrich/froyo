@@ -20,9 +20,16 @@ jake build
 ##Example
 ```javascript
 var froyo = require("froyo")
+
+function givePosts(req, res){
+res.writeHead(200, {"Content-Type": "text/json"})
+res.end(JSON.stringify(thePosts))
+}
+
 froyo.scoop({
 "/": froyo.staticHandler("./index.html", "text/html"),
-"/about": froyo.staticHandler("./about.jade", "text/jade", {"name": "froyo"})
+"/about": froyo.staticHandler("./about.jade", "text/jade", {"name": "froyo"}),
+"/posts": givePosts
 }, 8080)
 ```
 
