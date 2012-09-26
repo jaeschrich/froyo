@@ -1,6 +1,5 @@
 #Froyo: Node.js Micro Awesomeness
 Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
-BROKEN. Will fix.
 ##Install
 
 ###With npm:
