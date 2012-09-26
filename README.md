@@ -15,7 +15,7 @@ git clone git://github.com/PyScripter255/frozen-yogurt.git
 
 cd frozen-yogurt
 
-jake
+jake build
 ```
 ##Example
 ```javascript
@@ -107,11 +107,10 @@ If you aren't using jade, then don't pass options at all.
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
 1. npm
-2. jake
 
 ###Work with the code
 
-1. Install (the rest of the) dev dependencies ```jake```
+1. Install (the rest of the) dev dependencies ```npm install```
 2. Build with ```jake build```
 3. Test with ```mocha```
 4. Build docs with ```jake docs```
