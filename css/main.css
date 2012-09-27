@@ -1,8 +1,70 @@
+/* copied from http://johnmacfarlane.net/css/hk-pyg.css */
+/* Loosely based on pygment's default colors */
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre 
+   { margin: 0; padding: 0; border: 0; vertical-align: baseline; border: none; }
+td.lineNumbers { border-right: 1px solid #AAAAAA; text-align: right; color: #AAAAAA; padding-right: 5px; padding-left: 5px; } 
+td.sourceCode { padding-left: 5px;;}
+pre.sourceCode {}
+pre.sourceCode span.kw { color: #007020; font-weight: bold;} 
+pre.sourceCode span.dt { color: #902000;}
+pre.sourceCode span.dv { color: #40a070;}
+pre.sourceCode span.bn { color: #40a070;}
+pre.sourceCode span.fl { color: #40a070;}
+pre.sourceCode span.ch { color: #4070a0;;}
+pre.sourceCode span.st { color: #4070a0;;}
+pre.sourceCode span.co { color: #60a0b0; }
+pre.sourceCode span.ot { color: #007020;}
+pre.sourceCode span.al { color: red; font-weight: bold; }
+pre.sourceCode span.fu { color: #06287e;}
+pre.sourceCode span.re {}
+pre.sourceCode span.er { color: red; font-weight: bold;; }
+
+
+/* from https://gist.github.com/1311841 */
+pre{
+	background-color: #eee;
+	padding: 10px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow: auto;
+}
+code{
+	background-color: #eee;
+	padding: 1px 3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;	
+}
+/* my stuff */
 body {
-margin: 10px;
-background: lightgray;
+background-color: lightgray;
+text-align: center;
+padding-top: 2%;
+display: inline-block;
+padding-left: 10%;
+padding-right: 10%;
+font-family: 
+"Helvetica", arial, freesans, clean, sans-serif;
+font-size: 15px;
 }
 
-section {
-background: white;
+code {
+font-family: "Inconsolata";
 }
+.content {
+text-align: left;
+background-color: white;
+padding: 20px;
+border-radius: 25px;
+}
+
+.footnote{
+margin: 5px;
+font-size: 10px;
+text-align: right;
+font-family: 
+"Helvetica", arial, freesans, clean, sans-serif;
+}
+
+

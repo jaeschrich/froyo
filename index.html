@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>JS Bin</title>
+<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+  <div class="content">
+<h1 id="froyo-node.js-micro-awesomeness">Froyo: Node.js Micro Awesomeness</h1>
+<p>Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.</p>
+<h2 id="install">Install</h2>
+<h3 id="with-npm">With npm:</h3>
+<pre><code>npm install froyo</code></pre>
+<h3 id="build-from-source">Build from source:</h3>
+<p>Needs Jake</p>
+<pre><code>git clone git://github.com/PyScripter255/frozen-yogurt.git
+
+cd frozen-yogurt
+
+jake build</code></pre>
+<h2 id="example">Example</h2>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>)
+
+<span class="kw">var</span> thePosts = {
+<span class="st">&quot;bob&quot;</span>: [<span class="st">&quot;Froyo is cool&quot;</span>, <span class="st">&quot;Have you tried it?&quot;</span>],
+<span class="st">&quot;joe&quot;</span>: [<span class="st">&quot;Really?&quot;</span>, <span class="st">&quot;Nope&quot;</span>]
+}
+
+<span class="kw">function</span> givePosts(req, res){
+<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
+<span class="kw">res</span>.<span class="fu">end</span>(<span class="kw">JSON</span>.<span class="fu">stringify</span>(thePosts))
+}
+
+<span class="kw">froyo</span>.<span class="fu">scoop</span>({
+<span class="st">&quot;/&quot;</span>: <span class="kw">froyo</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;text/html&quot;</span>),
+<span class="st">&quot;/about&quot;</span>: <span class="kw">froyo</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;./about.jade&quot;</span>, <span class="st">&quot;text/jade&quot;</span>, {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;froyo&quot;</span>}),
+<span class="st">&quot;/posts&quot;</span>: givePosts
+}, <span class="dv">8080</span>)</code></pre>
+<h2 id="api-docs">API Docs:</h2>
+<h2 id="froyo.scoop">Froyo.scoop</h2>
+<p>Starts an HTTP server. Takes two arguments <code>map</code> and <code>port</code>.</p>
+<h3 id="map">Map</h3>
+<p>An object literal where you define your url mapping:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
+<span class="ch">&#39;/&#39;</span>: requestHandler,
+<span class="ch">&#39;/test&#39;</span>: otherRequestHandler
+}</code></pre>
+<p><code>requestHandler</code> and <code>otherRequestHandler</code> are function (that take the arguments request and response, like normal nodejs request handler functions).</p>
+<p>You can specify an optional 404 request handler (that takes all errors)</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
+<span class="ch">&#39;404&#39;</span>: errorRequestHandler
+}</code></pre>
+<h3 id="port">Port</h3>
+<p>The port that the HTTP server listens at.</p>
+<h3 id="example-1">Example</h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
+<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/plain&quot;</span>})
+<span class="kw">res</span>.<span class="fu">end</span>(<span class="st">&quot;Hello World&quot;</span>)
+}
+
+<span class="kw">function</span> err(req, res){
+<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {})
+<span class="kw">res</span>.<span class="fu">end</span>(<span class="st">&quot;404&quot;</span>)
+}
+
+<span class="kw">var</span> map = {
+<span class="ch">&#39;/&#39;</span>: index,
+<span class="ch">&#39;404&#39;</span>: err
+}</code></pre>
+<h2 id="froyo.statichandler">Froyo.staticHandler</h2>
+<p>Returns a (stream-based) static file serving function. Takes 2 (to three) arguments</p>
+<h3 id="example-2">Example</h3>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
+<span class="ch">&#39;/&#39;</span>: <span class="kw">froyos</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;/myfile.whatever&quot;</span>, <span class="st">&quot;text/whatever&quot;</span>, jadeOptions)
+}</code></pre>
+<h3 id="file">file</h3>
+<p>The file you want to serve.</p>
+<h3 id="encoding">encoding</h3>
+<p>The MIME type of the file. If it&apo;s <code>text/jade</code> then it will compile the jade to HTML and serve it. You don&apo;t need jade installed unless you plan to use it.</p>
+<h3 id="options">options</h3>
+<p>The options for the jade rendering. Like:</p>
+<pre class="sourceCode json"><code class="sourceCode json">{
+<span class="dt">&quot;thing1&quot;</span>: <span class="dv">1</span>,
+<span class="dt">&quot;thing2&quot;</span>: <span class="dv">2</span>
+}</code></pre>
+<p>If you aren&apo;t using jade, then don&apo;t pass options at all.</p>
+<h2 id="developer-guide">Developer Guide</h2>
+<h3 id="style-guide">Style Guide</h3>
+<ol style="list-style-type: decimal">
+<li>If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing</li>
+<li>Use streams if possible (for both internals and user experience)</li>
+<li>The API should be dead simple</li>
+<li>The API should be expressive and unopinionated</li>
+<li>The comments should be short but descriptive. Please don&apo;t overload comments</li>
+</ol>
+<h3 id="dependencies">Dependencies</h3>
+<h4 id="these-are-only-if-you-want-to-work-with-the-code-not-use-it-as-a-module">These are only if you want to work with the code, not use it as a module</h4>
+<ol style="list-style-type: decimal">
+<li>npm</li>
+</ol>
+<h3 id="work-with-the-code">Work with the code</h3>
+<ol style="list-style-type: decimal">
+<li>Install (the rest of the) dev dependencies <code>npm install</code></li>
+<li>Build with <code>jake build</code></li>
+<li>Test with <code>mocha</code></li>
+<li>Build docs with <code>jake docs</code></li>
+</ol>
+  </div>
+  <div class="footnote">
+  Markdown to html with http://johnmacfarlane.net/pandoc/try
+  </div>
+</body>
+</html>
+
