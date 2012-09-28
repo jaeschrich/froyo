@@ -1,13 +1,16 @@
 #Froyo: Node.js Micro Awesomeness
 Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
+
 ##Install
 
 ###With npm:
+
 ```
 npm install froyo
 ```
 
 ###Build from source:
+
 Needs Jake
 
 ```
@@ -17,7 +20,9 @@ cd frozen-yogurt
 
 jake build
 ```
+
 ##Example
+
 ```javascript
 var froyo = require("froyo")
 
@@ -42,6 +47,7 @@ froyo.scoop({
 
 ##Froyo.scoop
 Starts an HTTP server. Takes two arguments ```map``` and ```port```.
+
 ###Map 
 An object literal where you define your url mapping:
 
@@ -55,7 +61,8 @@ var map = {
 ```requestHandler``` and ```otherRequestHandler``` are function (that take the arguments request and response, like normal nodejs request handler functions).
 
 You can specify an optional 404 request handler (that takes all errors)
-```
+
+```javascript
 var map = {
 '404': errorRequestHandler
 }
@@ -92,6 +99,7 @@ var map = {
 '/': froyos.staticHandler("/myfile.whatever", "text/whatever", jadeOptions)
 }
 ```
+
 ###file
 The file you want to serve.
 
@@ -107,9 +115,13 @@ The options for the jade rendering. Like:
 "thing2": 2
 }
 ```
+
 If you aren't using jade, then don't pass options at all.
+
 ##Developer Guide
+
 ###Style Guide
+
 1. If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing
 2. Use streams if possible (for both internals and user experience)
 3. The API should be dead simple
@@ -126,4 +138,3 @@ If you aren't using jade, then don't pass options at all.
 2. Build with ```jake build```
 3. Test with ```mocha```
 4. Build docs with ```jake docs```
-
