@@ -219,8 +219,3 @@ var index = {
 1. Install (the rest of the) dev dependencies ```jake deps```
 2. Install with ```jake install```
 3. Test with ```npm test``` or ```mocha```
-
-1. Install (the rest of the) dev dependencies ```npm install```
-2. Build with ```jake build```
-3. Test with ```mocha```
-4. Build docs with ```jake docs```
