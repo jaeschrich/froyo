@@ -1,4 +1,5 @@
 node_modules
 .c9revisions
 docs
+*.*~
 test/oldMocks.txt

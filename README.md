@@ -61,7 +61,7 @@ froyo.scoop({
 ```
 
 ##License
-MIT License 
+The MIT License 
 
 Copyright (c) 2012 James A. Eschrich
 

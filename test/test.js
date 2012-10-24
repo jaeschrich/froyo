@@ -1,5 +1,6 @@
 var assert = require("assert"),
 froyo = require("../froyo"),
+fs = require("fs"),
 request = require("supertest");
 
 describe("froyo", function () {
@@ -66,22 +67,17 @@ describe("froyo", function () {
     describe("#static", function () {
         it("should compile mustache templates", function (done) {
             function index(req, res) {
-                res.render("./test.html", "mustache", { me: { name: "bob"} });
+                res.render(__dirname + "/test.html", "mustache", { me: { name: "bob"} });
             }
             app.scoop({
                 '/': index
             });
+
             request(app)
             .get("/")
             .expect(200)
             .expect("Content-Type", "text/html")
-            .expect("<!doctype html><html><body>Hi bob</body></html>")
-             .end(function (err, res) {
-                 assert.equal(res.body, "<!doctype html><html><body>Hi bob</body></html>", "The template didn't render right")
-                 if (err) done(err);
-                 else done();
-             });
-            done();
+            .expect("<!doctype html><html><body>Hi bob</body></html>", done)
         })
     })
 })

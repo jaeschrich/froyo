@@ -11,10 +11,6 @@
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
   },
  "dependencies": {
-"jade": "*",
-"mocha": "*",
-"jake": "*",
-"rewire": "1.0.3",
 "mustache": "*",
 "connect": "*"
 },
