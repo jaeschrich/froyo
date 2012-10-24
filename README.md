@@ -78,6 +78,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 ##API Docs:
 
+<<<<<<< HEAD
 ###Froyo
 
 Main namespace. Contains all of connect.middleware
@@ -97,6 +98,13 @@ Adds request handlers to your app. It can be called at anytime, and the routes a
 Takes an Object mapping paramter
 
 #####Example
+=======
+##Froyo.scoop
+Starts an HTTP server. Takes two arguments ```map``` and ```port```.
+
+###Map 
+An object literal where you define your url mapping:
+>>>>>>> a9d287c588138ee7890f4748162254e7891c918e
 
 ```javascript
 app.scoop({
@@ -111,6 +119,7 @@ Takes a port argument. Starts the app at the port specified.
 
 #####Example
 
+<<<<<<< HEAD
 ```javascript
 app.start(8080)
 ```
@@ -119,6 +128,14 @@ Basically like doing this:
 
 ```javascript
 http.createServer(app).listen(8080)
+=======
+You can specify an optional 404 request handler (that takes all errors)
+
+```javascript
+var map = {
+'404': errorRequestHandler
+}
+>>>>>>> a9d287c588138ee7890f4748162254e7891c918e
 ```
 
 ###Froyo request handlers
@@ -156,6 +173,12 @@ app.scoop({
     '/': index
 })
 ```
+<<<<<<< HEAD
+=======
+
+###file
+The file you want to serve.
+>>>>>>> a9d287c588138ee7890f4748162254e7891c918e
 
 If you pass a function, that function is served for GET requests.
 
@@ -192,6 +215,11 @@ var index = {
 //are not the same!
 ```
 
+<<<<<<< HEAD
+=======
+If you aren't using jade, then don't pass options at all.
+
+>>>>>>> a9d287c588138ee7890f4748162254e7891c918e
 ##Developer Guide
 
 ###Style Guide
@@ -209,6 +237,13 @@ var index = {
 
 ###Work with the code
 
+<<<<<<< HEAD
 1. Install (the rest of the) dev dependencies ```jake deps```
 2. Install with ```jake install```
 3. Test with ```npm test``` or ```mocha```
+=======
+1. Install (the rest of the) dev dependencies ```npm install```
+2. Build with ```jake build```
+3. Test with ```mocha```
+4. Build docs with ```jake docs```
+>>>>>>> a9d287c588138ee7890f4748162254e7891c918e
