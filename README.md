@@ -98,13 +98,6 @@ Takes an Object mapping paramter
 
 #####Example
 
-##Froyo.scoop
-Starts an HTTP server. Takes two arguments ```map``` and ```port```.
-
-###Map 
-An object literal where you define your url mapping:
-
-
 ```javascript
 app.scoop({
     '/': index,
@@ -126,6 +119,7 @@ Basically like doing this:
 
 ```javascript
 http.createServer(app).listen(8080)
+```
 
 You can specify an optional 404 request handler (that takes all errors)
 
