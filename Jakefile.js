@@ -2,32 +2,40 @@ var fs = require("fs");
 var stream = require("stream").Stream;
 var spawn = require("child_process").spawn
 
-desc("Builds froyo.js");
-task("build", function(){
-var core = fs.createReadStream("froyo.core.js");
-var staticjs = fs.createReadStream("froyo.static.js");
-var main = fs.createWriteStream('./froyo.js');
-core.pipe(main);
-staticjs.pipe(main);
-console.log("froyo.js written");
+desc("Installs froyo.js");
+task("install", function(){
+    jake.exec([
+        "npm install"
+        ],
+        function(){
+            console.log("Installed froyo")
+            complete()
+    })
 });
 
 desc("Install dev dependecies")
-task("default", function(){
-spawn("npm", ['install'])
-})
-desc("Build the documentation")
-task("docs", [], function(){
-var gfm = require("github-flavored-markdown")
-fs.readdir("./docs", function(err, files){
-if (err) throw new Error(err)
-for (var file in files){
-if(files[file].match(/.*\.(.*)/)[1] === "md"){
-fs.readFile("docs/"+files[file], function(err, data){
-if (err) throw new Error(err)
-fs.writeFile("./docs/index.html", "<!DOCTYPE html><html><head><link rel=\"main.css\" /><script src=\"prettify.js\"></script><link rel=\"prettify.css\" /><body onload=\"prettify()\">"+gfm.parse(data.toString()).replace(/<pre lang=\".*\">/g, "<pre class=\"prettify\">"))
-})
-}
-}
-})
-})
+task("deps", function () {
+    jake.exec([
+        "npm install -g mocha",
+        "npm install jade",
+        "npm install rewire",
+        "npm install mustache",
+        "npm install connect",
+        "npm install supertest",
+        "npm install routes"
+        ],
+        function () {
+            console.log("Installed mocha, jade, rewire, mustache, supertest, and connect")
+            complete()
+        })
+});
+
+/*
+ * Does anyone know how to get the full (and hopefully color-coded) output of mocha here?
+*/
+desc("Runs unit tests")
+task("test", function () {
+    jake.exec(["mocha --reporter spec"], function () {
+        complete()
+    }, { printStdout: true, printStderr: true })
+});

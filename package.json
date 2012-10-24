@@ -1,9 +1,9 @@
 {
   "name": "froyo",
-  "version": "0.4.0",
+  "version": "0.9.0",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
-  "description": "A simple, micro-framework for Node.js. Works with the cluster module.",
-  "keywords": ["micro-framework", "cluster", "simple", "jade"],
+  "description": "A simple, micro-framework for Node.js.",
+  "keywords": ["micro-framework", "simple"],
   "main": "froyo",
   "homepage": "http://pyscripter255.github.com/frozen-yogurt/",
   "repository" :
@@ -11,9 +11,14 @@
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
   },
  "dependencies": {
-"jade": "0.27.5",
-"mocha": "1.5.0",
-"jake": "0.3.17",
-"github-flavored-markdown": "1.0.1"
+"jade": "*",
+"mocha": "*",
+"jake": "*",
+"rewire": "1.0.3",
+"mustache": "*",
+"connect": "*"
+},
+"scripts": {
+"test": "mocha --reporter spec"
 }
 }

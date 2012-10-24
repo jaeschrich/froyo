@@ -1,0 +1,86 @@
+var assert = require("assert")
+var Stream = require("stream").Stream;
+var rewire = require("rewire");
+
+describe("froyo.core", function(){
+	describe("#scoop", function(){
+		it("should start an http server and serve a response", function(done){
+		var froyo = rewire("../froyo.core")
+		froyo.__set__("http", {
+			createServer: function(cb){
+				var res = {
+					writeHead: function(statCode, headers){
+					},
+					write: function(){
+		        }
+		        }
+		        cb({url: "/?89=32"}, res)
+		        cb({url: "/nothingHere"})
+		        //cb({url: '/test/me'})
+		}
+		})
+		froyo.__set__("console", {
+		log: function(){}
+		})
+			function error(req, res){
+			res.writeHead(404, {"Content-Type": "text/plain"})
+			res.end("404: Not found")
+			this.called = true
+			}
+			error.called = false
+			
+			function index(req, res){
+			res.writeHead(200, {"Content-Type": "text/plain"})
+			res.end("Hello")
+			this.called = true
+			}
+			index.called = false
+
+			function namer(req, res){
+				res.writeHead(200, {"Content-Type": "text/plain"})
+				res.end(req.params.name)
+				if (typeof req.params.name === "string"){
+					namer.called = true
+				}
+			}
+			namer.called = false
+			
+			froyo.scoop({
+			'/': index,
+			'/test/{name}': namer,
+			'404': error
+			})
+			if (error.called === true && index.called === true){
+				done()
+			}
+		})
+	})
+	describe("#staticHandler", function(){
+		it("should return a function", function(done){
+		var froyo = rewire("../froyo.static")
+		froyo.__set__("fs", {
+			'createReadStream': function(){
+				var readStream = new Stream();
+				readStream.readable = true;
+				setTimeout(function(){
+					readStream.emit("data", "doctype 5\nhtml\n\tbody #{test}")
+				}, 200)
+				return readStream
+			}
+		})
+			var a = new Stream();
+			a.writeHead = function(){}
+			a.writable = true;
+			a.write = function(c){
+			if (assert.equal(c, "<!DOCTYPE html><html><body>Hi</body></html>")){
+				done(true)
+			}
+			}
+			a.end = function(){
+			done()
+			}
+			var b = froyo.staticHandler("test/test.jade", "text/jade", {"test": "Hi"})
+			b("", a)
+		})
+	})
+})
