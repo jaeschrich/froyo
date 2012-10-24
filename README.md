@@ -212,7 +212,7 @@ var index = {
 ###Dependencies
 ####These are only if you want to work with the code, not use it as a module
 1. npm
-2.jake (```npm install jake```)
+2. jake (```npm install jake```)
 
 ###Work with the code
 
