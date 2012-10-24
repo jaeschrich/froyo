@@ -18,7 +18,7 @@ git clone git://github.com/PyScripter255/frozen-yogurt.git
 
 cd frozen-yogurt
 
-jake build
+jake install
 ```
 
 ##Example
