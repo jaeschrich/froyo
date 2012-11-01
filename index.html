@@ -21,95 +21,149 @@
 
 cd frozen-yogurt
 
-jake build</code></pre>
+jake install</code></pre>
 <h2 id="example">Example</h2>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>)
 
 <span class="kw">var</span> thePosts = {
-<span class="st">&quot;bob&quot;</span>: [<span class="st">&quot;Froyo is cool&quot;</span>, <span class="st">&quot;Have you tried it?&quot;</span>],
-<span class="st">&quot;joe&quot;</span>: [<span class="st">&quot;Really?&quot;</span>, <span class="st">&quot;Nope&quot;</span>]
+    <span class="st">&quot;bob&quot;</span>: [<span class="st">&quot;Froyo is cool&quot;</span>, <span class="st">&quot;Have you tried it?&quot;</span>],
+    <span class="st">&quot;joe&quot;</span>: [<span class="st">&quot;Really?&quot;</span>, <span class="st">&quot;Nope&quot;</span>]
 }
 
 <span class="kw">function</span> givePosts(req, res){
-<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
-<span class="kw">res</span>.<span class="fu">end</span>(<span class="kw">JSON</span>.<span class="fu">stringify</span>(thePosts))
+    <span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
+    <span class="kw">res</span>.<span class="fu">end</span>(<span class="kw">JSON</span>.<span class="fu">stringify</span>(thePosts))
+}
+
+<span class="kw">function</span> index(req, res){
+    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;mustache&quot;</span>, {<span class="dt">lasestPost</span>: <span class="st">&quot;foobar&quot;</span>})
+}
+
+<span class="kw">var</span> postComment = {
+    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
+        <span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
+        <span class="kw">var</span> comment = <span class="st">&quot;&quot;</span>;
+        <span class="kw">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span>(data){
+            <span class="kw">var</span> comment += data;
+        })
+        <span class="kw">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span>(){
+            posts[<span class="kw">req.params</span>.<span class="fu">post</span>].<span class="fu">addComment</span>(<span class="kw">JSON</span>.<span class="fu">parse</span>(comment))
+        })
+        }
 }
 
 <span class="kw">froyo</span>.<span class="fu">scoop</span>({
-<span class="st">&quot;/&quot;</span>: <span class="kw">froyo</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;text/html&quot;</span>),
-<span class="st">&quot;/about&quot;</span>: <span class="kw">froyo</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;./about.jade&quot;</span>, <span class="st">&quot;text/jade&quot;</span>, {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;froyo&quot;</span>}),
-<span class="st">&quot;/posts&quot;</span>: givePosts
+    <span class="st">&quot;/&quot;</span>: index,
+    <span class="st">&quot;/posts&quot;</span>: givePosts,
+    <span class="st">&quot;/comment/:post&quot;</span>: postComment
 }, <span class="dv">8080</span>)</code></pre>
+<h2 id="license">License</h2>
+<p>The MIT License</p>
+<p>Copyright (c) 2012 James A. Eschrich</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <h2 id="api-docs">API Docs:</h2>
-<h2 id="froyo.scoop">Froyo.scoop</h2>
-<p>Starts an HTTP server. Takes two arguments <code>map</code> and <code>port</code>.</p>
-<h3 id="map">Map</h3>
-<p>An object literal where you define your url mapping:</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
-<span class="ch">&#39;/&#39;</span>: requestHandler,
-<span class="ch">&#39;/test&#39;</span>: otherRequestHandler
-}</code></pre>
-<p><code>requestHandler</code> and <code>otherRequestHandler</code> are function (that take the arguments request and response, like normal nodejs request handler functions).</p>
+<h3 id="froyo">Froyo</h3>
+<p>Main namespace. Contains all of connect.middleware</p>
+<h3 id="froyo.app-function">Froyo.app [Function]</h3>
+<p>returns a new app</p>
+<h3 id="app-object">App [Object]</h3>
+<p>It’s an extended version of the connect server. It has the following extra methods:</p>
+<h4 id="app.scoop">App.scoop</h4>
+<p>Adds request handlers to your app. It can be called at anytime, and the routes are based on <a href="https://github.com/aaronblohowiak/routes.js">routes</a>.</p>
+<p>Takes an Object mapping paramter</p>
+<h5 id="example-1">Example</h5>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">scoop</span>({
+    <span class="ch">&#39;/&#39;</span>: index,
+    <span class="ch">&#39;/posts/:post&#39;</span>: getPost
+})</code></pre>
+<h4 id="app.start">App.start</h4>
+<p>Takes a port argument. Starts the app at the port specified.</p>
+<h5 id="example-2">Example</h5>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">start</span>(<span class="dv">8080</span>)</code></pre>
+<p>Basically like doing this:</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">http</span>.<span class="fu">createServer</span>(app).<span class="fu">listen</span>(<span class="dv">8080</span>)</code></pre>
 <p>You can specify an optional 404 request handler (that takes all errors)</p>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
 <span class="ch">&#39;404&#39;</span>: errorRequestHandler
 }</code></pre>
-<h3 id="port">Port</h3>
-<p>The port that the HTTP server listens at.</p>
-<h3 id="example-1">Example</h3>
+<h3 id="froyo-request-handlers">Froyo request handlers</h3>
+<p>Just like node.js request handlers:</p>
+<p>```javascript function(req, res){</p>
+<p>} ``` However there are some differences.</p>
+<ol style="list-style-type: decimal">
+<li><code>req.params.*</code> is populated with the field you specified in the url routes.</li>
+</ol>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">scoop</span>({
+    <span class="ch">&#39;/posts/:post&#39;</span>: posts <span class="co">// req.params.post is populated</span>
+})</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>You can also pass objects</li>
+</ol>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> index = {
+    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
+    ...
+    },
+    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
+    ...
+    }
+}
+<span class="kw">app</span>.<span class="fu">scoop</span>({
+    <span class="ch">&#39;/&#39;</span>: index
+})</code></pre>
+<p>If you pass a function, that function is served for GET requests.</p>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
-<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/plain&quot;</span>})
-<span class="kw">res</span>.<span class="fu">end</span>(<span class="st">&quot;Hello World&quot;</span>)
+...
 }
 
-<span class="kw">function</span> err(req, res){
-<span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">404</span>, {})
-<span class="kw">res</span>.<span class="fu">end</span>(<span class="st">&quot;404&quot;</span>)
+<span class="co">//and</span>
+
+<span class="kw">var</span> index = {
+    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
+    ...
+    }
 }
 
-<span class="kw">var</span> map = {
-<span class="ch">&#39;/&#39;</span>: index,
-<span class="ch">&#39;404&#39;</span>: err
-}</code></pre>
-<h2 id="froyo.statichandler">Froyo.staticHandler</h2>
-<p>Returns a (stream-based) static file serving function. Takes 2 (to three) arguments</p>
-<h3 id="example-2">Example</h3>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
-<span class="ch">&#39;/&#39;</span>: <span class="kw">froyos</span>.<span class="fu">staticHandler</span>(<span class="st">&quot;/myfile.whatever&quot;</span>, <span class="st">&quot;text/whatever&quot;</span>, jadeOptions)
-}</code></pre>
-<h3 id="file">file</h3>
-<p>The file you want to serve.</p>
-<h3 id="encoding">encoding</h3>
-<p>The MIME type of the file. If it&apos;s <code>text/jade</code> then it will compile the jade to HTML and serve it. You don&apos;t need jade installed unless you plan to use it.</p>
-<h3 id="options">options</h3>
-<p>The options for the jade rendering. Like:</p>
-<pre class="sourceCode json"><code class="sourceCode json">{
-<span class="dt">&quot;thing1&quot;</span>: <span class="dv">1</span>,
-<span class="dt">&quot;thing2&quot;</span>: <span class="dv">2</span>
-}</code></pre>
-<p>If you aren&apos;t using jade, then don&apos;t pass options at all.</p>
+<span class="co">//are the same thing</span>
+
+<span class="co">//but!</span>
+<span class="kw">function</span> index(req, res){
+...
+}
+
+<span class="co">//and</span>
+
+<span class="kw">var</span> index = {
+    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
+    ...
+    },
+    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
+    <span class="co">//exact same function</span>
+    }
+}
+<span class="co">//are not the same!</span></code></pre>
 <h2 id="developer-guide">Developer Guide</h2>
 <h3 id="style-guide">Style Guide</h3>
 <ol style="list-style-type: decimal">
 <li>If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing</li>
-<li>Use streams if possible (for both internals and user experience)</li>
+<li>Use streams if possible (for both internals and user experience).</li>
 <li>The API should be dead simple</li>
 <li>The API should be expressive and unopinionated</li>
-<li>The comments should be short but descriptive. Please don&apos;t overload comments</li>
+<li>The comments should be short but descriptive. Please don’t overload comments</li>
 </ol>
 <h3 id="dependencies">Dependencies</h3>
 <h4 id="these-are-only-if-you-want-to-work-with-the-code-not-use-it-as-a-module">These are only if you want to work with the code, not use it as a module</h4>
 <ol style="list-style-type: decimal">
 <li>npm</li>
+<li>jake (<code>npm install jake</code>)</li>
 </ol>
 <h3 id="work-with-the-code">Work with the code</h3>
 <ol style="list-style-type: decimal">
-<li>Install (the rest of the) dev dependencies <code>npm install</code></li>
-<li>Build with <code>jake build</code></li>
-<li>Test with <code>mocha</code></li>
-<li>Build docs with <code>jake docs</code></li>
+<li>Install (the rest of the) dev dependencies <code>jake deps</code></li>
+<li>Install with <code>jake install</code></li>
+<li>Test with <code>npm test</code> or <code>mocha</code></li>
 </ol>
-  </div>
   <div class="footnote">
   Markdown to html with http://johnmacfarlane.net/pandoc/try
   </div>
