@@ -12,7 +12,8 @@
   },
  "dependencies": {
 "mustache": "*",
-"connect": "*"
+"connect": "*",
+"routes": "*"
 },
 "scripts": {
 "test": "mocha --reporter spec"
