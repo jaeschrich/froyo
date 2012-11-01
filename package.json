@@ -16,5 +16,6 @@
 },
 "scripts": {
 "test": "mocha --reporter spec"
-}
+},
+"files": ["froyo.js", "lib", "test", "Jakefile.js", "README.md"]
 }
