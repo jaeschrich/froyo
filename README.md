@@ -140,7 +140,7 @@ function(req, res){
 ```
 However there are some differences.
 
-1. ```req.params.*``` is populated with the field you specified in the url routes.
+* ```req.params.*``` is populated with the field you specified in the url routes.
 
 ```javascript
 app.scoop({
@@ -148,7 +148,7 @@ app.scoop({
 })
 ```
 
-2. You can also pass objects
+* You can also pass objects
 
 ```javascript
 var index = {
@@ -198,7 +198,24 @@ var index = {
 }
 //are not the same!
 ```
+* You have the res.render function
 
+<<<<<<< HEAD
+=======
+```javascript
+function index(req, res){
+    res.render(file, template, optionsOrConfig)
+}
+```
+
+Froyo ships with mustache templates by default.
+
+```javascript
+function index(req, res){
+    res.render("./index.html", "mustache", {name: "Example"})
+}
+```
+>>>>>>> master
 ##Developer Guide
 
 ###Style Guide
@@ -218,4 +235,8 @@ var index = {
 
 1. Install (the rest of the) dev dependencies ```jake deps```
 2. Install with ```jake install```
+<<<<<<< HEAD
 3. Test with ```npm test``` or ```mocha```
+=======
+3. Test with ```npm test``` or ```mocha```
+>>>>>>> master
