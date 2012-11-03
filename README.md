@@ -199,6 +199,21 @@ var index = {
 //are not the same!
 ```
 
+3. You have the res.render function
+```javascript
+function index(req, res){
+    res.render(file, template, optionsOrConfig)
+}
+```
+
+Froyo ships with mustache templates by default.
+
+```javascript
+function index(req, res){
+    res.render("./index.html", "mustache", {name: "Example"})
+}
+```
+You can also add templatew with the ```froyo.addTemplate``` function (which takes three arguments, the file, the server response, and template options).
 ##Developer Guide
 
 ###Style Guide
