@@ -140,7 +140,7 @@ function(req, res){
 ```
 However there are some differences.
 
-1. ```req.params.*``` is populated with the field you specified in the url routes.
+* ```req.params.*``` is populated with the field you specified in the url routes.
 
 ```javascript
 app.scoop({
@@ -148,7 +148,7 @@ app.scoop({
 })
 ```
 
-2. You can also pass objects
+* You can also pass objects
 
 ```javascript
 var index = {
@@ -198,7 +198,7 @@ var index = {
 }
 //are not the same!
 ```
-3. You have the res.render function
+* You have the res.render function
 
 ```javascript
 function index(req, res){
