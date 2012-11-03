@@ -213,7 +213,6 @@ function index(req, res){
     res.render("./index.html", "mustache", {name: "Example"})
 }
 ```
-You can also add templates with the ```froyo.addTemplate``` function (which takes three arguments, the file, the server response, and template options).
 ##Developer Guide
 
 ###Style Guide
