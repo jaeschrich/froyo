@@ -198,8 +198,8 @@ var index = {
 }
 //are not the same!
 ```
-
 3. You have the res.render function
+
 ```javascript
 function index(req, res){
     res.render(file, template, optionsOrConfig)
