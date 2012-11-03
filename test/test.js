@@ -78,6 +78,12 @@ describe("froyo", function () {
             .expect(200)
             .expect("Content-Type", "text/html")
             .expect("<!doctype html><html><body>Hi bob</body></html>", done)
-        })
-    })
-})
+        });
+        it("should add a new template", function () {
+            froyo.addTemplate("test", function (file, res, opts) {
+                //pass
+            });
+            assert.ok(froyo.getTemplate("test"));
+        });
+    });
+});
