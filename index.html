@@ -59,10 +59,6 @@ jake install</code></pre>
 }, <span class="dv">8080</span>)</code></pre>
 <h2 id="license">License</h2>
 <p>The MIT License</p>
-<p>Copyright (c) 2012 James A. Eschrich</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <h2 id="api-docs">API Docs:</h2>
 <h3 id="froyo">Froyo</h3>
 <p>Main namespace. Contains all of connect.middleware</p>
@@ -90,19 +86,17 @@ jake install</code></pre>
 }</code></pre>
 <h3 id="froyo-request-handlers">Froyo request handlers</h3>
 <p>Just like node.js request handlers:</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span>(req, res){
-
-}</code></pre>
-<p>However there are some differences.</p>
-<ol style="list-style-type: decimal">
+<p>```javascript function(req, res){</p>
+<p>} ``` However there are some differences.</p>
+<ul>
 <li><code>req.params.*</code> is populated with the field you specified in the url routes.</li>
-</ol>
+</ul>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">scoop</span>({
     <span class="ch">&#39;/posts/:post&#39;</span>: posts <span class="co">// req.params.post is populated</span>
 })</code></pre>
-<ol start="2" style="list-style-type: decimal">
+<ul>
 <li>You can also pass objects</li>
-</ol>
+</ul>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> index = {
     <span class="dt">get</span>: <span class="kw">function</span>(req, res){
     ...
@@ -145,27 +139,16 @@ jake install</code></pre>
     }
 }
 <span class="co">//are not the same!</span></code></pre>
-<h2 id="developer-guide">Developer Guide</h2>
-<h3 id="style-guide">Style Guide</h3>
-<ol style="list-style-type: decimal">
-<li>If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing</li>
-<li>Use streams if possible (for both internals and user experience).</li>
-<li>The API should be dead simple</li>
-<li>The API should be expressive and unopinionated</li>
-<li>The comments should be short but descriptive. Please don’t overload comments</li>
-</ol>
-<h3 id="dependencies">Dependencies</h3>
-<h4 id="these-are-only-if-you-want-to-work-with-the-code-not-use-it-as-a-module">These are only if you want to work with the code, not use it as a module</h4>
-<ol style="list-style-type: decimal">
-<li>npm</li>
-<li>jake (<code>npm install jake</code>)</li>
-</ol>
-<h3 id="work-with-the-code">Work with the code</h3>
-<ol style="list-style-type: decimal">
-<li>Install (the rest of the) dev dependencies <code>jake deps</code></li>
-<li>Install with <code>jake install</code></li>
-<li>Test with <code>npm test</code> or <code>mocha</code></li>
-</ol>
+<ul>
+<li>You have the res.render function</li>
+</ul>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
+    <span class="kw">res</span>.<span class="fu">render</span>(file, template, optionsOrConfig)
+}</code></pre>
+<p>Froyo ships with mustache templates by default.</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
+    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;mustache&quot;</span>, {<span class="dt">name</span>: <span class="st">&quot;Example&quot;</span>})
+}</code></pre>
 </div>
   <div class="footnote">
   Markdown to html with http://johnmacfarlane.net/pandoc/try
