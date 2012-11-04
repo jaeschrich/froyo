@@ -200,8 +200,6 @@ var index = {
 ```
 * You have the res.render function
 
-<<<<<<< HEAD
-=======
 ```javascript
 function index(req, res){
     res.render(file, template, optionsOrConfig)
@@ -215,7 +213,6 @@ function index(req, res){
     res.render("./index.html", "mustache", {name: "Example"})
 }
 ```
->>>>>>> master
 ##Developer Guide
 
 ###Style Guide
@@ -235,8 +232,4 @@ function index(req, res){
 
 1. Install (the rest of the) dev dependencies ```jake deps```
 2. Install with ```jake install```
-<<<<<<< HEAD
 3. Test with ```npm test``` or ```mocha```
-=======
-3. Test with ```npm test``` or ```mocha```
->>>>>>> master
