@@ -213,6 +213,25 @@ function index(req, res){
     res.render("./index.html", "mustache", {name: "Example"})
 }
 ```
+###froyo.addTemplate
+Adds a template to the template registry for use in ```res.render```. It's a function that gets passed the file string, the http server response, and the template render options.
+
+```javascript
+froyo.addTemplate("foo", function(file, res, opts){
+    var f = fs.createReadStream(file);
+    var fooRender = foo.createRenderStream(opts);
+    f.pipe(fooRender);
+    fooRender.pipe(f);
+});
+```
+
+###froyo.getTemplate
+Returns the template function registered under the given string.
+
+```javscript
+froyo.getTemplate("foo") // returns the foo template function
+```
+
 ##Developer Guide
 
 ###Style Guide
