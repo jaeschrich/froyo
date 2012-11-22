@@ -10,16 +10,14 @@ Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
 npm install froyo
 ```
 
-###Build from source:
-
-Needs Jake
+###Install from source:
 
 ```
 git clone git://github.com/PyScripter255/frozen-yogurt.git
 
 cd frozen-yogurt
 
-jake install
+npm install
 ```
 
 ##Example
