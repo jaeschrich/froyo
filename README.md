@@ -59,7 +59,7 @@ app.scoop({
     "/": index,
     "/posts": givePosts,
     "/comment/:post": postComment
-}, 8080)
+})
 
 app.start(8080);
 ```
