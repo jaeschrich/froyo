@@ -1,10 +1,10 @@
 {
   "name": "froyo",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
   "description": "A simple, micro-framework for Node.js.",
-  "keywords": ["micro-framework", "simple"],
-  "main": "froyo",
+  "keywords": ["micro-framework", "simple", "connect"],
+  "main": "froyo.js",
   "homepage": "http://pyscripter255.github.com/frozen-yogurt/",
   "repository" :
   { "type" : "git"
@@ -15,8 +15,13 @@
 "connect": "*",
 "routes": "*"
 },
-"scripts": {
-"test": "mocha --reporter spec"
+"devDependecies": {
+"mocha": "*",
+"rewire": "*",
+"supertest": "*"
 },
-"files": ["froyo.js", "lib", "test", "Jakefile.js", "README.md"]
+"scripts": {
+"test": "node ./node_modules/mocha/bin/mocha --reporter spec",
+},
+"license": "MIT"
 }

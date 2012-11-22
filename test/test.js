@@ -62,12 +62,26 @@ describe("froyo", function () {
                 if (err) done(err);
                 else done();
             });
-        })
+        });
+        it("should use the res.file method", function(done){
+			function test(req, res){
+				res.file(__dirname+"/test.html")
+			}
+			app.scoop({
+				'/': test
+			});
+			
+			request(app)
+			.get("/")
+			.expect(200)
+			.expect("Content-Type", "text/html")
+			.expect("<!doctype html><html><body>Hi {{me.name}}</body></html>", done);
+        });
     })
     describe("#static", function () {
         it("should compile mustache templates", function (done) {
             function index(req, res) {
-                res.render(__dirname + "/test.html", "mustache", { me: { name: "bob"} });
+                res.render(__dirname + "/test.html", { me: { name: "bob"} });
             }
             app.scoop({
                 '/': index
@@ -80,10 +94,11 @@ describe("froyo", function () {
             .expect("<!doctype html><html><body>Hi bob</body></html>", done)
         });
         it("should add a new template", function () {
-            froyo.addTemplate("test", function (file, res, opts) {
-                //pass
-            });
-            assert.ok(froyo.getTemplate("test"));
+			function test(file, res, opts) {
+				    //pass
+				}
+            froyo.addTemplate("test", test);
+            assert.equal(test, froyo.getTemplate("test"));
         });
     });
 });

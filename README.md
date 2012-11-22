@@ -1,4 +1,5 @@
-#Froyo: Node.js Micro Awesomeness
+#Froyo
+##Node.js Micro Awesomeness
 Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
 
 ##Install
@@ -25,6 +26,7 @@ jake install
 
 ```javascript
 var froyo = require("froyo")
+var app = froyo.app();
 
 var thePosts = {
     "bob": ["Froyo is cool", "Have you tried it?"],
@@ -37,7 +39,7 @@ function givePosts(req, res){
 }
 
 function index(req, res){
-    res.render("./index.html", "mustache", {lasestPost: "foobar"})
+    res.render("./index.html", {lasestPost: "foobar"}) // using the default mustache templates
 }
 
 var postComment = {
@@ -53,11 +55,13 @@ var postComment = {
         }
 }
 
-froyo.scoop({
+app.scoop({
     "/": index,
     "/posts": givePosts,
     "/comment/:post": postComment
 }, 8080)
+
+app.start(8080);
 ```
 
 ##License
@@ -242,13 +246,8 @@ froyo.getTemplate("foo") // returns the foo template function
 4. The API should be expressive and unopinionated
 5. The comments should be short but descriptive. Please don't overload comments
 
-###Dependencies
-####These are only if you want to work with the code, not use it as a module
-1. npm
-2. jake (```npm install jake```)
-
 ###Work with the code
 
-1. Install (the rest of the) dev dependencies ```jake deps```
-2. Install with ```jake install```
-3. Test with ```npm test``` or ```mocha```
+1. Install the dev dependencies ```npm install -d```
+2. Install with ```npm install```
+3. Test with ```npm test```
