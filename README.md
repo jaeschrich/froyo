@@ -109,6 +109,18 @@ app.scoop({
 })
 ```
 
+####App.set
+Sets a key to a value.
+
+```javascript
+app.set("mode", "production")
+```
+There are only to important key/value pairs. One is the template key, which is set the the name of a template in the template registry.
+
+```javascript
+app.set("template", templateNameString)
+```
+
 ####App.start
 
 Takes a port argument. Starts the app at the port specified.
@@ -206,17 +218,25 @@ var index = {
 
 ```javascript
 function index(req, res){
-    res.render(file, template, optionsOrConfig)
+    res.render(file, optionsOrConfig) // use app.set("template", yourTemplateName) to change from default (mustache)
 }
 ```
-
-Froyo ships with mustache templates by default.
+Froyo ships with mustache templates, enabled by default.
 
 ```javascript
 function index(req, res){
-    res.render("./index.html", "mustache", {name: "Example"})
+    res.render("./index.html", {name: "Example"})
 }
 ```
+
+* You have the res.file function, which streams a file to the client
+```javascript
+function index(req, res){
+    res.file(path);
+}
+```
+
+
 ###froyo.addTemplate
 Adds a template to the template registry for use in ```res.render```. It's a function that gets passed the file string, the http server response, and the template render options.
 
