@@ -235,15 +235,9 @@ function index(req, res){
     res.file(path);
 }
 ```
-<<<<<<< HEAD
-
 
 ###froyo.addTemplate
 Adds a template to the template registry for use in ```res.render```. It's a function that gets passed the file string, the http server response, and the template render options.
-=======
-###froyo.addTemplate
-Adds a template to the template registry for use in ```res.render```. It's a function that get's passed the file string, the http server response, and the template render options.
->>>>>>> e296c6ea7013e407e95c33bf527fe92014e158a7
 
 ```javascript
 froyo.addTemplate("foo", function(file, res, opts){
