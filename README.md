@@ -218,7 +218,8 @@ var index = {
 
 ```javascript
 function index(req, res){
-    res.render(file, optionsOrConfig) // use app.set("template", yourTemplateName) to change from default (mustache)
+    res.render(file, optionsOrConfig) 
+    // use app.set("template", yourTemplateName) to change from default template (mustache)
 }
 ```
 Froyo ships with mustache templates, enabled by default.
