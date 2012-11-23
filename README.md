@@ -121,7 +121,7 @@ app.set("template", templateNameString)
 
 The other is the mode:
 ```javascript
-app.set("mode", "production");
+app.set("mode", mode);
 ```
 Setting the mode to anything other than development (the default) stops full error logging. Other than that, you can set anythin you like, and use it.
 
