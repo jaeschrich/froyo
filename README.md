@@ -2,6 +2,28 @@
 ##Node.js Micro Awesomeness
 Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
 
+##Changelog v3.3
+1. Added res.redirect function, (takes a redirect path)
+```javascript
+res.redirect("/");
+```
+2. Added a req.splats array when splats are used in routes
+```javascript
+function splat(req, res){
+	res.end(typeof req.splats+"\n"+req.splats.toString())
+}
+
+app.scoop({
+	'/test/*': splat
+}).start(8080)
+```
+```
+$ curl localhost:8080/test/splats/are/cool
+Array
+splats/are/cool
+```
+That's a one item array in this case
+
 ##Install
 
 ###With npm:
@@ -223,6 +245,7 @@ function index(req, res){
     // use app.set("template", yourTemplateName) to change from default template (mustache)
 }
 ```
+
 Froyo ships with mustache templates, enabled by default.
 
 ```javascript
@@ -235,6 +258,13 @@ function index(req, res){
 ```javascript
 function index(req, res){
     res.file(path);
+}
+```
+
+* and the res.redirect function
+```javascript
+function index(req, res){
+	res.redirect(path)
 }
 ```
 

@@ -10,17 +10,20 @@ describe("froyo", function () {
             app.use(froyo.static("./"));
             done();
         })
-        it('should serve requests', function (done) {
+        it('should serve requests with ids and splats', function (done) {
             function namer(req, res) {
                 res.writeHead(200, { "Content-Type": "text/plain" })
                 assert.equal(req.params.name, "bob");
                 res.end(req.params.name)
             };
-            app.use(function (req, res, err) {
-                "pass"
-            })
+
+            function splat(req, res){
+            	res.writeHead(200, {"Content-Type": "text/plain"});
+            	res.end(req.splats.join(" "));
+            }
             app.scoop({
-                '/name/:name': namer
+                '/name/:name': namer,
+                '/splat/*/test/*': splat
             });
 
             request(app)
@@ -28,10 +31,12 @@ describe("froyo", function () {
             .expect(200)
             .expect("Content-Type", "text/plain")
             .expect("bob")
-            .end(function (err, res) {
-                if (err) done(err);
-                else done();
-            });
+
+            request(app)
+            .get("/splat/Hello/test/World")
+            .expect(200)
+            .expect("Content-Type", "text/plain")
+            .expect("Hello World", done);
         })
         it("should have get and posts methods", function (done) {
             var index = {
@@ -76,6 +81,23 @@ describe("froyo", function () {
 			.expect(200)
 			.expect("Content-Type", "text/html")
 			.expect("<!doctype html><html><body>Hi {{me.name}}</body></html>", done);
+        });
+        it("should have a res.redirect function", function(done){
+        	function index(req, res){
+        		res.writeHead(200);
+				res.end("Hello World");
+        	}
+        	function test(req, res){
+				res.redirect("/");
+        	}
+        	app.scoop({
+        		'/': index,
+        		'/test': test
+        	});
+        	request(app)
+        	.get('/test')
+        	.expect(303)
+        	.expect("Location", "/", done);
         });
     })
     describe("#static", function () {
