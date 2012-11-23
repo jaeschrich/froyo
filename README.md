@@ -146,14 +146,6 @@ Basically like doing this:
 http.createServer(app).listen(8080)
 ```
 
-You can specify an optional 404 request handler (that takes all errors)
-
-```javascript
-var map = {
-'404': errorRequestHandler
-}
-```
-
 ###Froyo request handlers
 
 Just like node.js request handlers:
@@ -267,13 +259,10 @@ froyo.getTemplate("foo") // returns the foo template function
 
 ##Developer Guide
 
-###Style Guide
+###Code Guide
 
-1. If a function returns nothing, it should return a boolean (based on whether the function worked or not) For testing
-2. Use streams if possible (for both internals and user experience).
-3. The API should be dead simple
-4. The API should be expressive and unopinionated
-5. The comments should be short but descriptive. Please don't overload comments
+1. Use streams if possible.
+2. The API should be simple, expressive and unopinionated
 
 ###Work with the code
 
