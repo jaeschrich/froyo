@@ -113,12 +113,23 @@ Sets a key to a value.
 ```javascript
 app.set("mode", "production")
 ```
-There are only to important key/value pairs. One is the template key, which is set the the name of a template in the template registry.
+There are only two important key/value pairs. One is the template key, which is set the the name of a template in the template registry.
 
 ```javascript
 app.set("template", templateNameString)
 ```
 
+The other is the mode:
+```javascript
+app.set("mode", "production");
+```
+Setting the mode to anything other than development (the default) stops full error logging. Other than that, you can set anythin you like, and use it.
+
+####App.get
+Returns a value by getting a key:
+```javascript
+app.get("mode") // development
+```
 ####App.start
 
 Takes a port argument. Starts the app at the port specified.
