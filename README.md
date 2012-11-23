@@ -140,7 +140,7 @@ Takes a port argument. Starts the app at the port specified.
 app.start(8080)
 ```
 
-Basically like doing this:
+Exactly like doing this:
 
 ```javascript
 http.createServer(app).listen(8080)
