@@ -21,7 +21,7 @@
 
 cd frozen-yogurt
 
-jake install</code></pre>
+npm install</code></pre>
 <h2 id="example">Example</h2>
 <pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>),
 app = froyo.app();
@@ -37,7 +37,7 @@ app = froyo.app();
 }
 
 <span class="kw">function</span> index(req, res){
-    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;mustache&quot;</span>, {<span class="dt">lasestPost</span>: <span class="st">&quot;foobar&quot;</span>})
+    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, {<span class="dt">lasestPost</span>: <span class="st">&quot;foobar&quot;</span>})
 }
 
 <span class="kw">var</span> postComment = {
