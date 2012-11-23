@@ -4,10 +4,13 @@ Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
 
 ##Changelog v3.3
 1. Added res.redirect function, (takes a redirect path)
+
 ```javascript
 res.redirect("/");
 ```
+
 2. Added a req.splats array when splats are used in routes
+
 ```javascript
 function splat(req, res){
 	res.end(typeof req.splats+"\n"+req.splats.toString())
@@ -17,6 +20,7 @@ app.scoop({
 	'/test/*': splat
 }).start(8080)
 ```
+
 ```
 $ curl localhost:8080/test/splats/are/cool
 Array
