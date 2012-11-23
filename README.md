@@ -123,7 +123,7 @@ The other is the mode:
 ```javascript
 app.set("mode", mode);
 ```
-Setting the mode to anything other than development (the default) stops full error logging. Other than that, you can set anythin you like, and use it.
+Setting the mode to anything other than development (the default) stops full error logging. Other than that, you can set anything you like, and use it.
 
 ####App.get
 Returns a value by getting a key:
