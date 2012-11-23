@@ -23,7 +23,8 @@ cd frozen-yogurt
 
 jake install</code></pre>
 <h2 id="example">Example</h2>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>)
+<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>),
+app = froyo.app();
 
 <span class="kw">var</span> thePosts = {
     <span class="st">&quot;bob&quot;</span>: [<span class="st">&quot;Froyo is cool&quot;</span>, <span class="st">&quot;Have you tried it?&quot;</span>],
@@ -52,11 +53,12 @@ jake install</code></pre>
         }
 }
 
-<span class="kw">froyo</span>.<span class="fu">scoop</span>({
+<span class="kw">app</span>.<span class="fu">scoop</span>({
     <span class="st">&quot;/&quot;</span>: index,
     <span class="st">&quot;/posts&quot;</span>: givePosts,
     <span class="st">&quot;/comment/:post&quot;</span>: postComment
-}, <span class="dv">8080</span>)</code></pre>
+})
+<span class="kw">app</span>.start(<span class="dv">8080</span>)</code></pre>
 <h2 id="license">License</h2>
 <p>The MIT License</p>
 <h2 id="api-docs">API Docs:</h2>
