@@ -115,12 +115,24 @@ describe("froyo", function () {
             .expect("Content-Type", "text/html")
             .expect("<!doctype html><html><body>Hi bob</body></html>", done)
         });
-        it("should add a new template", function () {
-			function test(file, res, opts) {
-				    //pass
+        it("should add a new template", function (done) {
+			app.set("template", function(file, res, opts){
+				res.writeHead(200, {"Content-Type": "text/plain"})
+				res.end(file);
+			});
+
+			app.scoop({
+				'/': function(req, res){
+					res.render("./test.html", {"name": "foo"})
 				}
-            froyo.addTemplate("test", test);
-            assert.equal(test, froyo.getTemplate("test"));
+			});
+
+			request(app)
+			.get("/")
+			.expect(200)
+			.expect("Content-Type", "text/plain")
+			.expect("./test.html", done);
+			
         });
     });
 });

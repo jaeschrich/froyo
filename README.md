@@ -2,7 +2,10 @@
 ##Node.js Micro Awesomeness
 Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
 
-##Changelog v3.3
+##Changelog v0.9.4
+1. Moved default mustache renderer to [toothbrush](http://pyscripter255.github.com/toothbrush). Don't worry, there is no external difference.
+
+##Changlof v0.9.3
 1. Added res.redirect function, (takes a redirect path)
 
 ```javascript
@@ -139,17 +142,20 @@ Sets a key to a value.
 ```javascript
 app.set("mode", "production")
 ```
-There are only two important key/value pairs. One is the template key, which is set the the name of a template in the template registry.
+There are only two important key/value pairs. One is the template key, which is set to the template function (see extend on the wiki).
 
 ```javascript
-app.set("template", templateNameString)
+app.set("template", templateFunction)
 ```
+
+By default, this is set to froyo's built in mustache template renderer.
 
 The other is the mode:
 ```javascript
 app.set("mode", mode);
 ```
-Setting the mode to anything other than development (the default) stops full error logging. Other than that, you can set anything you like, and use it.
+Setting the mode to anything other than development (the default) stops full error logging. 
+Other than that, you can set key to any value.
 
 ####App.get
 Returns a value by getting a key:
@@ -270,25 +276,6 @@ function index(req, res){
 function index(req, res){
 	res.redirect(path)
 }
-```
-
-###froyo.addTemplate
-Adds a template to the template registry for use in ```res.render```. It's a function that gets passed the file string, the http server response, and the template render options.
-
-```javascript
-froyo.addTemplate("foo", function(file, res, opts){
-    var f = fs.createReadStream(file);
-    var fooRender = foo.createRenderStream(opts);
-    f.pipe(fooRender);
-    fooRender.pipe(f);
-});
-```
-
-###froyo.getTemplate
-Returns the template function registered under the given string.
-
-```javscript
-froyo.getTemplate("foo") // returns the foo template function
 ```
 
 ##Developer Guide

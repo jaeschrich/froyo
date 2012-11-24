@@ -1,6 +1,6 @@
 {
   "name": "froyo",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
   "description": "A simple, micro-framework for Node.js.",
   "keywords": ["micro-framework", "simple", "connect"],
@@ -11,14 +11,15 @@
   , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
   },
  "dependencies": {
-"mustache": "*",
+"toothbrush": "*",
 "connect": "*",
 "routes": "*"
 },
 "devDependecies": {
 "mocha": "*",
 "rewire": "*",
-"supertest": "*"
+"supertest": "*",
+"marked": "*"
 },
 "scripts": {
 "test": "node ./node_modules/mocha/bin/mocha --reporter spec"
