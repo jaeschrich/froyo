@@ -1,6 +1,6 @@
 #Froyo
 ##Node.js Micro Awesomeness
-Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.
+```froyo``` is a simple, expressive node.js micro-framework.
 
 ##Changelog v0.9.4
 1. Moved default mustache renderer to [toothbrush](http://pyscripter255.github.com/toothbrush). Don't worry, there is no external difference.
