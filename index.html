@@ -1,162 +1,116 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset=utf-8 />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Froyo</title>
-<link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
-<a href="https://github.com/PyScripter255/frozen-yogurt"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
-  <div class="content">
-<h1 id="froyo-node.js-micro-awesomeness">Froyo: Node.js Micro Awesomeness</h1>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Froyo : A simple, micro-framework for Node.js." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Froyo</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/PyScripter255/froyo">View on GitHub</a>
+
+          <h1 id="project_title">Froyo</h1>
+          <h2 id="project_tagline">A simple, micro-framework for Node.js.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/PyScripter255/froyo/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/PyScripter255/froyo/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Froyo</h1>
+
+<h2>Node.js Micro Awesomeness</h2>
+
 <p>Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.</p>
-<h2 id="install">Install</h2>
-<h3 id="with-npm">With npm:</h3>
-<pre><code>npm install froyo</code></pre>
-<h3 id="build-from-source">Build from source:</h3>
-<p>Needs Jake</p>
+
+<h2>Install</h2>
+
+<h3>With npm:</h3>
+
+<pre><code>npm install froyo
+</code></pre>
+
+<h3>Install from source:</h3>
+
 <pre><code>git clone git://github.com/PyScripter255/frozen-yogurt.git
-
 cd frozen-yogurt
+npm install
+</code></pre>
 
-npm install</code></pre>
-<h2 id="example">Example</h2>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> froyo = require(<span class="st">&quot;froyo&quot;</span>),
-app = froyo.app();
+<h2>Example</h2>
 
-<span class="kw">var</span> thePosts = {
-    <span class="st">&quot;bob&quot;</span>: [<span class="st">&quot;Froyo is cool&quot;</span>, <span class="st">&quot;Have you tried it?&quot;</span>],
-    <span class="st">&quot;joe&quot;</span>: [<span class="st">&quot;Really?&quot;</span>, <span class="st">&quot;Nope&quot;</span>]
-}
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">froyo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"froyo"</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">froyo</span><span class="p">.</span><span class="nx">app</span><span class="p">();</span>
 
-<span class="kw">function</span> givePosts(req, res){
-    <span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
-    <span class="kw">res</span>.<span class="fu">end</span>(<span class="kw">JSON</span>.<span class="fu">stringify</span>(thePosts))
-}
+<span class="kd">var</span> <span class="nx">thePosts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"bob"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"Froyo is cool"</span><span class="p">,</span> <span class="s2">"Have you tried it?"</span><span class="p">],</span>
+    <span class="s2">"joe"</span><span class="o">:</span> <span class="p">[</span><span class="s2">"Really?"</span><span class="p">,</span> <span class="s2">"Nope"</span><span class="p">]</span>
+<span class="p">}</span>
 
-<span class="kw">function</span> index(req, res){
-    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, {<span class="dt">lasestPost</span>: <span class="st">&quot;foobar&quot;</span>})
-}
+<span class="kd">function</span> <span class="nx">givePosts</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">"Content-Type"</span><span class="o">:</span> <span class="s2">"text/json"</span><span class="p">})</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">thePosts</span><span class="p">))</span>
+<span class="p">}</span>
 
-<span class="kw">var</span> postComment = {
-    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
-        <span class="kw">res</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="st">&quot;Content-Type&quot;</span>: <span class="st">&quot;text/json&quot;</span>})
-        <span class="kw">var</span> comment = <span class="st">&quot;&quot;</span>;
-        <span class="kw">req</span>.<span class="fu">on</span>(<span class="st">&quot;data&quot;</span>, <span class="kw">function</span>(data){
-            <span class="kw">var</span> comment += data;
-        })
-        <span class="kw">req</span>.<span class="fu">on</span>(<span class="st">&quot;end&quot;</span>, <span class="kw">function</span>(){
-            posts[<span class="kw">req.params</span>.<span class="fu">post</span>].<span class="fu">addComment</span>(<span class="kw">JSON</span>.<span class="fu">parse</span>(comment))
-        })
-        }
-}
+<span class="kd">function</span> <span class="nx">index</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">"./index.html"</span><span class="p">,</span> <span class="p">{</span><span class="nx">lasestPost</span><span class="o">:</span> <span class="s2">"foobar"</span><span class="p">})</span> <span class="c1">// using the default mustache templates</span>
+<span class="p">}</span>
 
-<span class="kw">app</span>.<span class="fu">scoop</span>({
-    <span class="st">&quot;/&quot;</span>: index,
-    <span class="st">&quot;/posts&quot;</span>: givePosts,
-    <span class="st">&quot;/comment/:post&quot;</span>: postComment
-})
-<span class="kw">app</span>.start(<span class="dv">8080</span>)</code></pre>
-<h2 id="license">License</h2>
-<p>The MIT License</p>
-<h2 id="api-docs">API Docs:</h2>
-<h3 id="froyo">Froyo</h3>
-<p>Main namespace. Contains all of connect.middleware</p>
-<h3 id="froyo.app-function">Froyo.app [Function]</h3>
-<p>returns a new app</p>
-<h3 id="app-object">App [Object]</h3>
-<p>It’s an extended version of the connect server. It has the following extra methods:</p>
-<h4 id="app.scoop">App.scoop</h4>
-<p>Adds request handlers to your app. It can be called at anytime, and the routes are based on <a href="https://github.com/aaronblohowiak/routes.js">routes</a>.</p>
-<p>Takes an Object mapping paramter</p>
-<h5 id="example-1">Example</h5>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">scoop</span>({
-    <span class="ch">&#39;/&#39;</span>: index,
-    <span class="ch">&#39;/posts/:post&#39;</span>: getPost
-})</code></pre>
-<h4 id="app.start">App.start</h4>
-<p>Takes a port argument. Starts the app at the port specified.</p>
-<h5 id="example-2">Example</h5>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">start</span>(<span class="dv">8080</span>)</code></pre>
-<p>Basically like doing this:</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">http</span>.<span class="fu">createServer</span>(app).<span class="fu">listen</span>(<span class="dv">8080</span>)</code></pre>
-<p>You can specify an optional 404 request handler (that takes all errors)</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> map = {
-<span class="ch">&#39;404&#39;</span>: errorRequestHandler
-}</code></pre>
-<h3 id="froyo-request-handlers">Froyo request handlers</h3>
-<p>Just like node.js request handlers:</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span>(req, res){
+<span class="kd">var</span> <span class="nx">postComment</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">post</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s2">"Content-Type"</span><span class="o">:</span> <span class="s2">"text/json"</span><span class="p">})</span>
+        <span class="kd">var</span> <span class="nx">comment</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"data"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">comment</span> <span class="o">+=</span> <span class="nx">data</span><span class="p">;</span>
+        <span class="p">})</span>
+        <span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">"end"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="nx">posts</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">post</span><span class="p">].</span><span class="nx">addComment</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">comment</span><span class="p">))</span>
+        <span class="p">})</span>
+        <span class="p">}</span>
+<span class="p">}</span>
 
-}</code></pre>
-<p>However there are some differences.</p>
-<ul>
-<li><code>req.params.*</code> is populated with the field you specified in the url routes.</li>
-</ul>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">app</span>.<span class="fu">scoop</span>({
-    <span class="ch">&#39;/posts/:post&#39;</span>: posts <span class="co">// req.params.post is populated</span>
-})</code></pre>
-<ul>
-<li>You can also pass objects</li>
-</ul>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> index = {
-    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
-    ...
-    },
-    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
-    ...
-    }
-}
-<span class="kw">app</span>.<span class="fu">scoop</span>({
-    <span class="ch">&#39;/&#39;</span>: index
-})</code></pre>
-<p>If you pass a function, that function is served for GET requests.</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
-...
-}
+<span class="nx">app</span><span class="p">.</span><span class="nx">scoop</span><span class="p">({</span>
+    <span class="s2">"/"</span><span class="o">:</span> <span class="nx">index</span><span class="p">,</span>
+    <span class="s2">"/posts"</span><span class="o">:</span> <span class="nx">givePosts</span><span class="p">,</span>
+    <span class="s2">"/comment/:post"</span><span class="o">:</span> <span class="nx">postComment</span>
+<span class="p">})</span>
 
-<span class="co">//and</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</pre></div>
 
-<span class="kw">var</span> index = {
-    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
-    ...
-    }
-}
+<h2>License</h2>
 
-<span class="co">//are the same thing</span>
+<p>The MIT License </p>
 
-<span class="co">//but!</span>
-<span class="kw">function</span> index(req, res){
-...
-}
+<h2>Tutorial</h2>
 
-<span class="co">//and</span>
+<p><a href="https://github.com/PyScripter255/froyo/wiki/Tutorial">here</a></p>
+      </section>
+    </div>
 
-<span class="kw">var</span> index = {
-    <span class="dt">get</span>: <span class="kw">function</span>(req, res){
-    ...
-    },
-    <span class="dt">post</span>: <span class="kw">function</span>(req, res){
-    <span class="co">//exact same function</span>
-    }
-}
-<span class="co">//are not the same!</span></code></pre>
-<ul>
-<li>You have the res.render function</li>
-</ul>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
-    <span class="kw">res</span>.<span class="fu">render</span>(file, template, optionsOrConfig)
-}</code></pre>
-<p>Froyo ships with mustache templates by default.</p>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> index(req, res){
-    <span class="kw">res</span>.<span class="fu">render</span>(<span class="st">&quot;./index.html&quot;</span>, <span class="st">&quot;mustache&quot;</span>, {<span class="dt">name</span>: <span class="st">&quot;Example&quot;</span>})
-}</code></pre>
-</div>
-  <div class="footnote">
-  Markdown to html with http://johnmacfarlane.net/pandoc/try
-  </div>
-</body>
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Froyo maintained by <a href="https://github.com/PyScripter255">PyScripter255</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>
-
