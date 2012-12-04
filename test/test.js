@@ -5,6 +5,9 @@ request = require("supertest");
 
 describe("froyo", function () {
     var app = froyo.app();
+    afterEach(function(){
+    	app = froyo.app();
+    })
     describe("#app", function () {
         it("should use middleware", function (done) {
             app.use(froyo.static("./"));

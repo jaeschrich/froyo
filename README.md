@@ -2,34 +2,8 @@
 ##Node.js Micro Awesomeness
 ```froyo``` is a simple, expressive node.js micro-framework.
 
-##Changelog v0.9.4
-1. Moved default mustache renderer to [toothbrush](http://pyscripter255.github.com/toothbrush). Don't worry, there is no external difference.
-
-##Changlof v0.9.3
-1. Added res.redirect function, (takes a redirect path)
-
-```javascript
-res.redirect("/");
-```
-
-2. Added a req.splats array when splats are used in routes
-
-```javascript
-function splat(req, res){
-	res.end(typeof req.splats+"\n"+req.splats.toString())
-}
-
-app.scoop({
-	'/test/*': splat
-}).start(8080)
-```
-
-```
-$ curl localhost:8080/test/splats/are/cool
-Array
-splats/are/cool
-```
-That's a one item array in this case
+##Changelog v0.9.6
+1. Fixed issue with middleware
 
 ##Install
 

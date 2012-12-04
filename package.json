@@ -1,14 +1,14 @@
 {
   "name": "froyo",
-  "version": "0.9.4",
+  "version": "0.9.6",
   "author": "PyScripter255 <https://github.com/PyScripter255>",
   "description": "A simple, micro-framework for Node.js.",
   "keywords": ["micro-framework", "simple", "connect"],
   "main": "froyo.js",
-  "homepage": "http://pyscripter255.github.com/frozen-yogurt/",
+  "homepage": "http://pyscripter255.github.com/froyo/",
   "repository" :
   { "type" : "git"
-  , "url" : "https://github.com/PyScripter255/frozen-yogurt.git"
+  , "url" : "https://github.com/PyScripter255/froyo.git"
   },
  "dependencies": {
 "toothbrush": "*",
