@@ -1,7 +1,7 @@
 {
   "name": "froyo",
-  "version": "0.9.6",
-  "author": "PyScripter255 <https://github.com/PyScripter255>",
+  "version": "0.9.7",
+  "author": "James A. Eschrich",
   "description": "A simple, micro-framework for Node.js.",
   "keywords": ["micro-framework", "simple", "connect"],
   "main": "froyo.js",
