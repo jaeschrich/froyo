@@ -5,10 +5,10 @@
   "description": "A simple, micro-framework for Node.js.",
   "keywords": ["micro-framework", "simple", "connect"],
   "main": "froyo.js",
-  "homepage": "http://pyscripter255.github.com/froyo/",
+  "homepage": "http://bvirus.github.com/froyo/",
   "repository" :
   { "type" : "git"
-  , "url" : "https://github.com/PyScripter255/froyo.git"
+  , "url" : "https://github.com/bvirus/froyo.git"
   },
  "dependencies": {
 "toothbrush": "*",
