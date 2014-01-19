@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Froyo : A simple, micro-framework for Node.js." />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>Froyo</title>
+    <title>Froyo by bvirus</title>
   </head>
 
   <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/PyScripter255/froyo">View on GitHub</a>
-
-          <h1 id="project_title">Froyo</h1>
-          <h2 id="project_tagline">A simple, micro-framework for Node.js.</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/PyScripter255/froyo/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/PyScripter255/froyo/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+    <header>
+      <div class="inner">
         <h1>Froyo</h1>
+        <h2>A simple, micro-framework for Node.js.</h2>
+        <a href="https://github.com/bvirus/froyo" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
 
-<h2>Node.js Micro Awesomeness</h2>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="froyo" class="anchor" href="#froyo"><span class="octicon octicon-link"></span></a>Froyo</h1>
 
-<p><code>froyo</code>is a simple, expressive node.js micro-framework.</p>
+<h2>
+<a name="nodejs-micro-awesomeness" class="anchor" href="#nodejs-micro-awesomeness"><span class="octicon octicon-link"></span></a>Node.js Micro Awesomeness</h2>
 
-<h2>Install</h2>
+<p>Froyo(frozen-yogurt) is a simple, expressive node.js micro-framework.</p>
 
-<h3>With npm:</h3>
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
+
+<h3>
+<a name="with-npm" class="anchor" href="#with-npm"><span class="octicon octicon-link"></span></a>With npm:</h3>
 
 <pre><code>npm install froyo
 </code></pre>
 
-<h3>Install from source:</h3>
+<h3>
+<a name="install-from-source" class="anchor" href="#install-from-source"><span class="octicon octicon-link"></span></a>Install from source:</h3>
 
 <pre><code>git clone git://github.com/PyScripter255/frozen-yogurt.git
 cd frozen-yogurt
 npm install
 </code></pre>
 
-<h2>Example</h2>
+<h2>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h2>
 
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">froyo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"froyo"</span><span class="p">)</span>
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">froyo</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"froyo"</span><span class="p">)</span>
 <span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">froyo</span><span class="p">.</span><span class="nx">app</span><span class="p">();</span>
 
 <span class="kd">var</span> <span class="nx">thePosts</span> <span class="o">=</span> <span class="p">{</span>
@@ -92,25 +95,34 @@ npm install
 <span class="nx">app</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
 </pre></div>
 
-<h2>License</h2>
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>The MIT License </p>
 
-<h2>Tutorial</h2>
+<h2>
+<a name="tutorial" class="anchor" href="#tutorial"><span class="octicon octicon-link"></span></a>Tutorial</h2>
 
 <p><a href="https://github.com/PyScripter255/froyo/wiki/Tutorial">here</a></p>
-      </section>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/bvirus/froyo/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/bvirus/froyo/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/bvirus/froyo"></a> is maintained by <a href="https://github.com/bvirus">bvirus</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Froyo maintained by <a href="https://github.com/PyScripter255">PyScripter255</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
+  
   </body>
 </html>
